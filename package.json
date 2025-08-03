@@ -1,0 +1,49 @@
+{
+  "name": "@adestefa/ccmem",
+  "version": "1.0.0",
+  "description": "Claude Code Memory - Standardized project memory system for Claude Code",
+  "type": "module",
+  "main": "server.js",
+  "bin": {
+    "ccmem": "./cli.js",
+    "ccmem-server": "./mcp-server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "postinstall": "node setup.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "claude-code",
+    "mcp",
+    "memory",
+    "project-context",
+    "development-assistant",
+    "mcp-server"
+  ],
+  "author": "Claude Code Community",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adestefa/ccmem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adestefa/ccmem/issues"
+  },
+  "homepage": "https://github.com/adestefa/ccmem#readme",
+  "files": [
+    "*.js",
+    "*.sql",
+    "hooks/",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

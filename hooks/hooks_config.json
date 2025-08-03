@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "session_start": {
+      "enabled": true,
+      "script": "session_start.py",
+      "description": "Initialize project context and load memory"
+    },
+    "session_end": {
+      "enabled": true,
+      "script": "session_end.py", 
+      "description": "Save session summary and capture milestones"
+    },
+    "tool_complete": {
+      "enabled": true,
+      "script": "tool_complete.py",
+      "description": "Capture significant development actions"
+    },
+    "assistant_response": {
+      "enabled": true,
+      "script": "assistant_response.py",
+      "description": "Extract and save architectural insights"
+    }
+  },
+  "settings": {
+    "min_response_length": 100,
+    "capture_tool_types": ["Edit", "Write", "MultiEdit", "Bash"],
+    "ignore_patterns": ["npm install", "git status", "ls", "pwd"],
+    "auto_categorize": true
+  }
+}
