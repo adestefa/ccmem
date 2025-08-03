@@ -17,20 +17,35 @@ CCMem (Claude Code Memory) transforms Claude Code from a stateless assistant int
 
 ## Installation
 
-### Quick Install (Recommended)
+### Method 1: NPM Package (Recommended)
 
-Use Claude's built-in MCP manager:
+Use Claude's built-in MCP manager with NPM:
 
 ```bash
 claude mcp add ccmem -- npx -y @adestefa/ccmem@latest
 ```
 
-This method automatically configures Claude Code integration and sets up memory capture hooks.
+**Automatic setup:**
+- Configures Claude Code MCP integration
+- Sets up memory capture hooks
+- Ready to use immediately
 
-### Alternative Installation Methods
+### Method 2: Direct GitHub (Latest)
+
+Install directly from GitHub repository:
+
+```bash
+claude mcp add ccmem -- uvx --from git+https://github.com/adestefa/ccmem ccmem-server
+```
+
+**Benefits:**
+- Always uses latest code
+- No NPM registry dependency  
+- Ideal for development and testing
+
+### Method 3: Traditional Installation
 
 #### NPM Global Installation
-
 ```bash
 npm install -g @adestefa/ccmem
 cd /path/to/your/project
@@ -38,13 +53,11 @@ ccmem setup
 ```
 
 #### Direct Installation Script
-
 ```bash
 curl -fsSL https://raw.githubusercontent.com/adestefa/ccmem/main/install.sh | bash
 ```
 
 #### Manual Installation
-
 ```bash
 git clone https://github.com/adestefa/ccmem.git
 cd ccmem
@@ -207,9 +220,25 @@ When exploring existing projects, CCMem:
 
 ## Requirements
 
-- Node.js 18.0.0 or higher
+### System Dependencies
+
+**Option 1: Bun (Recommended)**
+- Installation: `curl -fsSL https://bun.sh/install | bash`
+- Benefits: Native SQLite support, faster performance, zero external dependencies
+- Platforms: macOS, Linux, Windows (WSL)
+
+**Option 2: Node.js (Fallback)**
+- Version: Node.js 18.0.0 or higher
+- Installation: [nodejs.org](https://nodejs.org) or `brew install node`
+- Note: Uses JSON storage instead of SQLite for compatibility
+
+**Option 3: UV/UVX (For Direct GitHub)**
+- Installation: `brew install uv` (macOS) or `winget install --id=astral-sh.uv` (Windows)
+- Use case: Direct GitHub repository installation
+
+### Claude Code Requirements
 - Claude Code with MCP support
-- SQLite (bundled with Node.js)
+- Proper MCP server configuration (automatic with `claude mcp add`)
 
 ## License
 

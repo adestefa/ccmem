@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# CCMem MCP Server Wrapper for Direct GitHub Installation
+# Enables: claude mcp add ccmem -- uvx --from git+https://github.com/adestefa/ccmem ccmem-server
+
+set -e
+
+# Get script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Detect runtime preference (Bun preferred, Node.js fallback)
+if command -v bun >/dev/null 2>&1; then
+    RUNTIME="bun"
+    SERVER_SCRIPT="$SCRIPT_DIR/server-bun.js"
+elif command -v node >/dev/null 2>&1; then
+    RUNTIME="node"
+    SERVER_SCRIPT="$SCRIPT_DIR/server-node.js"
+else
+    echo "Error: Neither Bun nor Node.js found. Please install one of:" >&2
+    echo "  Bun (recommended): curl -fsSL https://bun.sh/install | bash" >&2
+    echo "  Node.js: https://nodejs.org/" >&2
+    exit 1
+fi
+
+# Check if server script exists
+if [[ ! -f "$SERVER_SCRIPT" ]]; then
+    # Try fallback options
+    for candidate in "$SCRIPT_DIR/server-bun.js" "$SCRIPT_DIR/server-node.js" "$SCRIPT_DIR/server.js"; do
+        if [[ -f "$candidate" ]]; then
+            SERVER_SCRIPT="$candidate"
+            if [[ "$candidate" == *"bun"* ]]; then
+                RUNTIME="bun"
+            else
+                RUNTIME="node"
+            fi
+            break
+        fi
+    done
+    
+    if [[ ! -f "$SERVER_SCRIPT" ]]; then
+        echo "Error: No CCMem server script found in $SCRIPT_DIR" >&2
+        exit 1
+    fi
+fi
+
+# Execute the server with all arguments passed through
+exec "$RUNTIME" "$SERVER_SCRIPT" "$@"

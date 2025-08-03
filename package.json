@@ -39,9 +39,12 @@
   "files": [
     "*.js",
     "*.sql",
+    "ccmem-server",
+    "ccmem-mcp-server",
     "hooks/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "INSTALLATION.md"
   ],
   "publishConfig": {
     "access": "public"

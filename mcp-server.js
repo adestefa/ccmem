@@ -31,7 +31,7 @@ async function startServer() {
     serverFile = join(__dirname, 'server-bun.js');
     command = 'bun';
   } else {
-    serverFile = join(__dirname, 'server.js');
+    serverFile = join(__dirname, 'server-node.js');
     command = 'node';
   }
   
