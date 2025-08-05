@@ -10,6 +10,10 @@ A standardized MCP server that provides Claude Code with persistent project memo
 
 CCMem (Claude Code Memory) transforms Claude Code from a stateless assistant into a project-aware development partner by maintaining persistent memory across sessions. The system captures and stores project context, architectural decisions, development history, and accumulated knowledge.
 
+<div align="center">
+  <img src="./CCMem_flow.png" alt="CCMem System Flow" width="800">
+</div>
+
 ### Key Features
 
 - **Project Settings Management**: Stores and recalls start, test, build, and deployment commands
